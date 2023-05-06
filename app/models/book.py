@@ -13,6 +13,13 @@ class Book(db.Model):
         book_as_dict["id"] = self.id
         book_as_dict["title"] = self.title
         book_as_dict["description"] = self.description
+        
+        if self.author:
+            book_as_dict["author"] = self.author.name
+        
+        if self.genres:
+            genres_names= [genre.name for genre in self.genres]
+            book_as_dict["genres"] = genres_names
 
         return book_as_dict
 
